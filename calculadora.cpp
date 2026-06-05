@@ -1,8 +1,6 @@
 #include <iostream>
-using namespace std;
-
-// Calculadora simple en C++
-// Se incluyen funciones básicas de suma y resta.
+#include <limits>
+#include <string>
 
 // ============================
 // Sección de Suma y Resta
@@ -11,39 +9,64 @@ using namespace std;
 // ============================
 
 int suma(int a, int b) {
-    // Función de suma - sección encargada a Isai Rutman Mercado Clemente
+    // Función de suma -  Isai Rutman Mercado Clemente
     return a + b;
 }
 
 int resta(int a, int b) {
-    // Función de resta - sección encargada a Isai Rutman Mercado Clemente
+    // Función de resta -  Isai Rutman Mercado Clemente
     return a - b;
 }
 
+void mostrarMenu() {
+    std::cout << "Calculadora \n";
+    std::cout << "1. Suma\n";
+    std::cout << "2. Resta\n";
+    std::cout << "0. Salir\n";
+    std::cout << "Seleccione una opcion: ";
+}
+
+int leerEntero(const std::string& mensaje) {
+    int valor;
+    while (true) {
+        std::cout << mensaje;
+        if (std::cin >> valor) {
+            return valor;
+        }
+        std::cout << "Por favor ingrese un numero entero.\n";
+        std::cin.clear();
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+}
+
+void procesarOpcion(int opcion) {
+    if (opcion == 1 || opcion == 2) {
+        int num1 = leerEntero("Ingrese el primer numero: ");
+        int num2 = leerEntero("Ingrese el segundo numero: ");
+        int resultado = (opcion == 1) ? suma(num1, num2) : resta(num1, num2);
+
+        if (opcion == 1) {
+            std::cout << "Resultado de la suma: " << resultado << "\n";
+        } else {
+            std::cout << "Resultado de la resta: " << resultado << "\n";
+        }
+    } else if (opcion != 0) {
+        std::cout << "Intente de nuevo.\n";
+    }
+}
+
 int main() {
-    int opcion;
-    int num1, num2;
+    int opcion = -1;
 
-    cout << "Calculadora simple\n";
-    cout << "1. Suma\n";
-    cout << "2. Resta\n";
-    cout << "Seleccione una opcion: ";
-    cin >> opcion;
-
-    cout << "Ingrese el primer numero: ";
-    cin >> num1;
-    cout << "Ingrese el segundo numero: ";
-    cin >> num2;
-
-    if (opcion == 1) {
-        int resultado = suma(num1, num2);
-        cout << "Resultado de la suma: " << resultado << endl;
-    } else if (opcion == 2) {
-        int resultado = resta(num1, num2);
-        cout << "Resultado de la resta: " << resultado << endl;
-    } else {
-        cout << "Opcion no valida." << endl;
+    while (opcion != 0) {
+        mostrarMenu();
+        opcion = leerEntero("\n");
+        procesarOpcion(opcion);
+        if (opcion != 0) {
+            std::cout << "\n";
+        }
     }
 
+    std::cout << "Gracias por usar la calculadora.\n";
     return 0;
 }
