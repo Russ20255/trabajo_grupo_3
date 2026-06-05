@@ -2,11 +2,11 @@
 #include <limits>
 #include <string>
 
-// ============================
+// ===================================
 // Sección de Suma y Resta
 // Autor: Isai Rutman Mercado Clemente
 // Email: 76505332@continental.edu.pe
-// ============================
+// ===================================
 
 int suma(int a, int b) {
     // Función de suma -  Isai Rutman Mercado Clemente
