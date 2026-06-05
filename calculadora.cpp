@@ -3,25 +3,37 @@
 #include <string>
 
 // =================================== //
-// Sección de Suma y Resta
+// Sección de Suma y Resta 
 // Autor: Isai Rutman Mercado Clemente
 // Email: 76505332@continental.edu.pe
 // =================================== //
 
+// =================================== //
+// Sección de Suma y Resta Multiplicación
+// Autor: Quinteros Serpa Markoantonio  
+// Email: 76505332@continental.edu.pe
+// =================================== //
+
 int suma(int a, int b) {
-    // Función de suma -  Isai Rutman Mercado Clemente
+    // Función de suma - Isai Rutman Mercado Clemente
     return a + b;
 }
 
 int resta(int a, int b) {
-    // Función de resta -  Isai Rutman Mercado Clemente
+    // Función de resta - Isai Rutman Mercado Clemente
     return a - b;
+}
+
+int multiplicacion(int a, int b) {
+    // Función de multiplicación - Quinteros Serpa Markoantonio
+    return a * b;
 }
 
 void mostrarMenu() {
     std::cout << "Calculadora \n";
     std::cout << "1. Suma\n";
     std::cout << "2. Resta\n";
+    std::cout << "3. Multiplicacion\n";
     std::cout << "0. Salir\n";
     std::cout << "Seleccione una opcion: ";
 }
@@ -40,16 +52,23 @@ int leerEntero(const std::string& mensaje) {
 }
 
 void procesarOpcion(int opcion) {
-    if (opcion == 1 || opcion == 2) {
+    if (opcion == 1 || opcion == 2 || opcion == 3) {
         int num1 = leerEntero("Ingrese el primer numero: ");
         int num2 = leerEntero("Ingrese el segundo numero: ");
-        int resultado = (opcion == 1) ? suma(num1, num2) : resta(num1, num2);
+
+        int resultado;
 
         if (opcion == 1) {
+            resultado = suma(num1, num2);
             std::cout << "Resultado de la suma: " << resultado << "\n";
-        } else {
+        } else if (opcion == 2) {
+            resultado = resta(num1, num2);
             std::cout << "Resultado de la resta: " << resultado << "\n";
+        } else {
+            resultado = multiplicacion(num1, num2);
+            std::cout << "Resultado de la multiplicacion: " << resultado << "\n";
         }
+
     } else if (opcion != 0) {
         std::cout << "Intente de nuevo.\n";
     }
@@ -62,6 +81,7 @@ int main() {
         mostrarMenu();
         opcion = leerEntero("\n");
         procesarOpcion(opcion);
+
         if (opcion != 0) {
             std::cout << "\n";
         }
